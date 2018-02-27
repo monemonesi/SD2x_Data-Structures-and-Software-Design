@@ -58,8 +58,49 @@ public class LinkedListUtilsTest {
 
     @Test
     public void testRemoveMaximumValues() {
-	fail("Not yet implemented");
+	LinkedList<String> list = new LinkedList<String>(Arrays.asList("1","2","3","3","4","4","5"));
+	LinkedListUtils.removeMaximumValues(list, 2);
+	LinkedList<String> testList = new LinkedList<String>(Arrays.asList("1","2","3","3"));
+	
+	assertEquals(testList, list);
     }
+    @Test
+    public void testRemoveMaximumValues2() {
+	LinkedList<String> list = new LinkedList<String>(Arrays.asList("1","2","3","3","4","4","5"));
+	LinkedListUtils.removeMaximumValues(list, 1);
+	LinkedList<String> testList = new LinkedList<String>(Arrays.asList("1","2","3","3","4","4"));
+	
+	assertEquals(testList, list);
+    }
+    @Test
+    public void testRemoveMaximumValues3() {
+	// remove with negative N value (should return the original list)
+	LinkedList<String> list = new LinkedList<String>(Arrays.asList("1","2","3","3","4","4","5"));
+	LinkedListUtils.removeMaximumValues(list, -1);
+	LinkedList<String> testList = new LinkedList<String>(Arrays.asList("1","2","3","3","4","4","5"));
+	
+	assertEquals(testList, list);
+    }
+    @Test
+    public void testRemoveMaximumValues4() {
+	// remove with N values from null list (should return the original list)
+	LinkedList<String> list = null;
+	LinkedListUtils.removeMaximumValues(list, 1);
+	
+	assertEquals(null, list);
+    }
+    
+    @Test
+    public void testRemoveMaximumValues5() {
+	// remove with N value bigger the list.size() (should return an empty List)
+	LinkedList<String> list = new LinkedList<String>(Arrays.asList("1","2","3","3","4","4","5"));
+	LinkedListUtils.removeMaximumValues(list, 100);
+	LinkedList<String> testList = new LinkedList<String>(Arrays.asList());
+	
+	assertEquals(testList, list);
+    }
+    
+    
 
     @Test
     public void testContainsSubsequence() {

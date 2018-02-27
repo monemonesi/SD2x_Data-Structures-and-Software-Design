@@ -37,6 +37,17 @@ public class LinkedListUtils {
 	}
 
     }
+    /*
+     * 
+     * removeMaximumValues: This method removes all instances of the N largest values in the LinkedList. 
+     * Because the values are Strings, you will need to use the String class’ compareTo method to find 
+     * the largest elements;
+     * see the Java API for help with that method. If the input LinkedList is null or if N is non-positive,
+     * this method should simply return without any modifications to the input LinkedList. 
+     * Keep in mind that if any of the N largest values appear more than once in the LinkedList, 
+     * this method should return remove all instances, so it may remove more than N elements overall. 
+     * The other elements in the LinkedList should not be modified and their order must not be changed.
+     */
 
     public static void removeMaximumValues(LinkedList<String> list, int N) {
 
