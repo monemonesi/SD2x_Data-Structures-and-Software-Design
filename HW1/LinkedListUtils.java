@@ -37,6 +37,9 @@ public class LinkedListUtils {
 	}
 
     }
+    
+    
+    
     /*
      * 
      * removeMaximumValues: This method removes all instances of the N largest values in the LinkedList. 
@@ -54,6 +57,12 @@ public class LinkedListUtils {
 	/* IMPLEMENT THIS METHOD! */
 
     }
+    
+    /*
+     * 
+     * Returns true if the second LinkedList is a subsequence of the first, and false if it is not. 
+     * The method should return false if either input is null or empty.
+     */
 
     public static boolean containsSubsequence(LinkedList<Integer> one, LinkedList<Integer> two) {
 

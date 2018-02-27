@@ -104,7 +104,32 @@ public class LinkedListUtilsTest {
 
     @Test
     public void testContainsSubsequence() {
-	fail("Not yet implemented");
+	//test one value-true
+	LinkedList<Integer> one = new LinkedList<Integer>(Arrays.asList(2,5,7,9));
+	LinkedList<Integer> two = new LinkedList<Integer>(Arrays.asList(2));
+	assertTrue(LinkedListUtils.containsSubsequence(one, two));
+    }
+    
+    @Test
+    public void testContainsSubsequence2() {
+	//Test one value-false
+	LinkedList<Integer> one = new LinkedList<Integer>(Arrays.asList(2,5,7,9));
+	LinkedList<Integer> two = new LinkedList<Integer>(Arrays.asList(1));
+	assertFalse(LinkedListUtils.containsSubsequence(one, two));
+    }
+    
+    @Test
+    public void testContainsSubsequence3() {
+	//test null lists scenario
+	LinkedList<Integer> one = new LinkedList<Integer>(Arrays.asList(2,5,7,9));
+	assertFalse(LinkedListUtils.containsSubsequence(one, null));
+    }
+    @Test
+    public void testContainsSubsequence4() {
+	//test multi elements subListTrue
+	LinkedList<Integer> one = new LinkedList<Integer>(Arrays.asList(2,5,7,9));
+	LinkedList<Integer> two = new LinkedList<Integer>(Arrays.asList(5,7,9));
+	assertTrue(LinkedListUtils.containsSubsequence(one, two));
     }
 
 }
