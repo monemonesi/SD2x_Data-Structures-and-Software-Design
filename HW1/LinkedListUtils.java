@@ -1,5 +1,7 @@
-
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
+
 
 /*
  * SD2x Homework #1
@@ -53,9 +55,17 @@ public class LinkedListUtils {
      */
 
     public static void removeMaximumValues(LinkedList<String> list, int N) {
-
-	/* IMPLEMENT THIS METHOD! */
-
+	
+	if (list != null && !list.isEmpty() && N > 0) {
+	    if (N >= list.size()) list.removeAll(list);
+	    else {
+		for (int i = 0; i < N; i++) {
+			LinkedList<String> sortedList = new LinkedList<String>(list);
+			Collections.sort(sortedList, Collections.reverseOrder());
+			list.removeAll(Arrays.asList(sortedList.get(0)));
+		    }
+	    }
+	}
     }
     
     /*
@@ -66,8 +76,25 @@ public class LinkedListUtils {
 
     public static boolean containsSubsequence(LinkedList<Integer> one, LinkedList<Integer> two) {
 
-	/* IMPLEMENT THIS METHOD! */
+	if(one.isEmpty() || two.isEmpty() || one == null || two == null) return false;
+	if(two.size() > one.size()) return false;
+	else if (two.size() == one.size()) {
+	    for (Integer integer : one) {
+		
+	    }
+	}
+	else {
+	    boolean testSubList = false;
+	    for (Integer integer : two) {
+		for(int i = 0; i < two.size(); i++) {
+		    
+		}
+	    }
+	    
+	}
 
 	return true; // this line is here only so this code will compile if you don't modify it
     }
+
+
 }
