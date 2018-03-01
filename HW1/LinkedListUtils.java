@@ -2,6 +2,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 
+import com.sun.java.accessibility.util.TopLevelWindowListener;
+
 
 /*
  * SD2x Homework #1
@@ -76,24 +78,22 @@ public class LinkedListUtils {
 
     public static boolean containsSubsequence(LinkedList<Integer> one, LinkedList<Integer> two) {
 
-	if(one.isEmpty() || two.isEmpty() || one == null || two == null) return false;
-	if(two.size() > one.size()) return false;
-	else if (two.size() == one.size()) {
-	    for (Integer integer : one) {
-		
-	    }
-	}
-	else {
-	    boolean testSubList = false;
-	    for (Integer integer : two) {
-		for(int i = 0; i < two.size(); i++) {
-		    
+	if (one == null || two == null || one.isEmpty() || two.isEmpty())
+	    return false;
+	if (two.size() > one.size())
+	    return false;
+	
+	for (int i = 0; i <= one.size() - two.size(); i++) {
+	    boolean test = true;
+	    for (int j = 0; j < two.size(); j++) {
+		if (two.get(j) != one.get(i + j)) {
+		    test = false;
+		    break;
 		}
 	    }
-	    
+	    if (test) return true;
 	}
-
-	return true; // this line is here only so this code will compile if you don't modify it
+	return false;
     }
 
 
