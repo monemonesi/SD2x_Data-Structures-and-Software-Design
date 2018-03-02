@@ -11,9 +11,24 @@ public class HtmlValidator {
 	
 	public static Stack<HtmlTag> isValidHtml(Queue<HtmlTag> tags) {
 
-		/* IMPLEMENT THIS METHOD! */
+		if(tags.isEmpty()) return null;
 		
-		return null; // this line is here only so this code will compile if you don't modify it
+		Stack<HtmlTag> tagsInStack = new Stack<HtmlTag>();
+		
+		for (HtmlTag htmlTag : tags) {
+		    if(htmlTag.isOpenTag()) tagsInStack.push(htmlTag);
+		    else if (! htmlTag.isSelfClosing()) {
+			if(tagsInStack.isEmpty())
+			    return null;
+			else if(htmlTag.matches(tagsInStack.peek())) 
+			    tagsInStack.pop();
+			 else 
+			    return tagsInStack;
+			
+		    }
+		}
+		
+		return tagsInStack;
 	}
 	
 
