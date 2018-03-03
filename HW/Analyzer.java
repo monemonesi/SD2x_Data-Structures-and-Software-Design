@@ -140,15 +140,42 @@ public class Analyzer {
 	
 	/*
 	 * Implement this method in Part 4
+	 * This method should use the Map to calculate and 
+	 * return the average score of all the words in the input sentence.
+	 * 
+	 * If a word in the sentence does not start with a letter, then you can ignore it, 
+	 * but if it starts with a letter and is not present in the Map, assign it a score of 0.
+	 * 
+	 * If the input Map is null or empty, or if the input sentence is null or empty or
+	 *  does not contain any valid words, this method should return 0.
 	 */
 	
-	public static double calculateSentenceScore(Map<String, Double> wordScores, String sentence) {
+    public static double calculateSentenceScore(Map<String, Double> wordScores, String sentence) {
+	
+	double sentenceScore = 0;
+	int count = 0;
+	
+	if (wordScores != null && !wordScores.isEmpty() && sentence != null && !sentence.isEmpty()) {
+	    // split the sentence text (it must be case insensitive)
+	    String[] tokens = sentence.toLowerCase().split(" ");
+	    for (String token : tokens) {
 
-		/* IMPLEMENT THIS METHOD! */
-		
-		return 0; // this line is here only so this code will compile if you don't modify it
+		// each string need to start with a letter
+		if (Character.isLetter(token.charAt(0))) {
+		    count ++;
+		    if(wordScores.containsKey(token)) {
+			sentenceScore += wordScores.get(token);
+		    }
+		}
 
-	}
+	    }
+	    if (count!=0) return sentenceScore/count;
+	} else return 0;
+	return 0;
+
+	//return sentenceScore; 
+
+    }
 	
 	/*
 	 * This method is here to help you run your program. Y
