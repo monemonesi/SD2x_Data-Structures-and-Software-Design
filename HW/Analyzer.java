@@ -1,6 +1,7 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -33,12 +34,10 @@ public class Analyzer {
 	 * if the file cannot be opened for reading or if the input filename is null,
 	 * this method should return an empty List.
 	 */
-
 	try {
 	    fileLines = Files.lines(Paths.get(filename)).collect(Collectors.toList());
 	} catch (Exception e) {
 	    return sentencesFromFile;
-	    //return new ArrayList<Sentence>();
 	}
 
 	for (String fileLine : fileLines) {
@@ -60,14 +59,56 @@ public class Analyzer {
 	
 	/*
 	 * Implement this method in Part 2
+	 * 
+	 * This method should find all of the individual tokens/words in the text field of each Sentence
+	 * in the List and create Word objects for each distinct word. 
+	 * The Word objects should keep track of the number of occurrences of that word in all Sentences,
+	 * and the total cumulative score of all Sentences in which it appears. 
+	 * Return a Set of those Word objects.
+	 * 
+	 * If the input List of Sentences is null or is empty, the allWords method should return an empty Set.
+	 * If a Sentence object in the input List is null, this method should ignore it
+	 * and process the non-null Sentences.
+	 * Ignores any token that does not start with a letter and convert all strings to lowercase. 
 	 */
-	public static Set<Word> allWords(List<Sentence> sentences) {
+	 
+    public static Set<Word> allWords(List<Sentence> sentences) {
 
-		/* IMPLEMENT THIS METHOD! */
-		
-		return null; // this line is here only so this code will compile if you don't modify it
+	ArrayList<Word> wordList = new ArrayList<Word>();
 
+	try {
+	    for (Sentence sentence : sentences) {
+		if (sentence != null) {
+		    // split the sentence text (it must be case insensitive)
+		    String[] tokens = sentence.getText().toLowerCase().split(" ");
+
+		    for (String token : tokens) {
+			Word word = new Word(token);
+			// each word need to start with a letter
+			if (Character.isLetter(token.charAt(0))) {
+			    word.increaseTotal(sentence.getScore());
+			    if (!wordList.contains(word)) {
+				wordList.add(word);
+			    } else {
+				int index = wordList.indexOf(word);
+				wordList.get(index).increaseTotal(sentence.getScore());
+			    }
+			}
+
+		    }
+		}
+
+	    }
+
+	} catch (Exception e) {
+	    return new HashSet<Word>(wordList); 
 	}
+	/*
+	 * I am creating the hashset at the end because it is easier build the ArrayList and get value at
+	 * defined index
+	 */
+	return new HashSet<Word>(wordList);
+    }
 	
 	/*
 	 * Implement this method in Part 3
