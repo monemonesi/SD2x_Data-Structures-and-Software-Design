@@ -1,3 +1,4 @@
+package HW3;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -169,11 +170,11 @@ public class Analyzer {
 		}
 
 	    }
-	    if (count!=0) return sentenceScore/count;
-	} else return 0;
-	return 0;
+	    //if (count!=0) return sentenceScore/count;
+	} //else return 0;
+	//return 0;
 
-	//return sentenceScore; 
+	return count == 0 ? 0 : sentenceScore/count;
 
     }
 	
