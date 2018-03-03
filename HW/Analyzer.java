@@ -1,6 +1,7 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -112,18 +113,35 @@ public class Analyzer {
 	
 	/*
 	 * Implement this method in Part 3
+	 * 
+	 * 
+	 * This method should iterate over each Word in the input Set, 
+	 * use the Word’s calculateScore method to get the average sentiment score for that Word, 
+	 * and then place the text of the Word (as key) and calculated score (as value) in a Map.
+	 *
+	 *If the input Set of Words is null or is empty, the calculateScores method should return
+	 * an empty Map.
+	 *
+	 *If a Word object in the input Set is null, 
+	 *this method should ignore it and process the non-null Words.
 	 */
 	public static Map<String, Double> calculateScores(Set<Word> words) {
 
-		/* IMPLEMENT THIS METHOD! */
+		Map<String, Double> mapScore = new HashMap<String, Double>();
 		
-		return null; // this line is here only so this code will compile if you don't modify it
-
+		if(words!=null && !words.isEmpty()) {
+		    for (Word word : words) {
+			if(word!=null) mapScore.put(word.getText(), word.calculateScore());
+		    }
+		}
+		
+		return mapScore;
 	}
 	
 	/*
 	 * Implement this method in Part 4
 	 */
+	
 	public static double calculateSentenceScore(Map<String, Double> wordScores, String sentence) {
 
 		/* IMPLEMENT THIS METHOD! */
