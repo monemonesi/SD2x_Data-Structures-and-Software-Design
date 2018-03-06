@@ -155,23 +155,23 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
 	if(val == null) return -1;
 
-	Node node = root;
+	Node n = root;
 	int depth = 0;
 	
 	
 	while(true) {
-	    if(node.value.equals(val)) {
+	    if(n.value.equals(val)) {
 		return depth;
 	    }
-	    else if(node.value.compareTo(val)>0) {
-		node = node.leftChild;
+	    else if(n.value.compareTo(val)>0) {
+		n = n.leftChild;
 		depth ++;
 	    }
 	    else {
-		node = node.rightChild;
+		n = n.rightChild;
 		depth ++;
 	    }
-	    if(node == null) return -1;
+	    if(n == null) return -1;
 	    
 	    
 	}
@@ -179,20 +179,59 @@ public class BinarySearchTree<E extends Comparable<E>> {
     }
 
     // Method #3.
+    /*
+     * Given a value, this method should return the “height” of its Node,
+     * which is the greatest number of nodes between that node and any descendant node that is a leaf,
+     * including the leaf but not the node itself.
+     * The height of a leaf node (i.e., one which has no children) is defined to be 0.
+     * If the input value is null or does not exist in this BST, this method should return -1.
+     */
+    /*
     protected int height(E val) {
 
-	/* IMPLEMENT THIS METHOD! */
+	if(val == null) return -1;
 
-	return -2; // this line is here only so this code will compile if you don't modify it
+	Node n = findNode(val);
+	if(n == null) return -1;
+	
+	if(n.leftChild==null && n.rightChild==null) return 0;//height of a leaf node
+	//else {
+	    int maxHeight = Math.max(height(n.leftChild.value), height(n.rightChild.value));
+	    return maxHeight + 1; // do not forget the actual node
+	//}
+    }*/
+    protected int height(E val) {
+	if (val == null) return -1;
+	    
+
+	Node n = findNode(val);
+
+	return height(n);
 
     }
 
+    protected int height(Node n) {
+	if (n == null) return -1;
+	     
+	if (n.leftChild == null && n.rightChild == null) return 0; // leaf node
+	int maxHeight = Math.max(height(n.leftChild), height(n.rightChild));   
+	return maxHeight+1;
+    }
+
+
     // Method #4.
+    /*
+     * Given a Node, return true if the absolute value of the difference in heights
+     * of its left and right children is 0 or 1, and return false otherwise. 
+     * If the Node is null or does not exist in this BST, this method should return false.
+     */
     protected boolean isBalanced(Node n) {
 
-	/* IMPLEMENT THIS METHOD! */
+	if (n == null || !contains(n.value))
+	    return false;
 
-	return true; // this line is here only so this code will compile if you don't modify it
+	int deltaHeight = Math.abs(height(n.leftChild) - height(n.rightChild));
+	return deltaHeight < 1 ? true : false;
 
     }
 
