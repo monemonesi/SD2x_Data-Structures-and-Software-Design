@@ -1,3 +1,4 @@
+import jdk.nashorn.internal.ir.ReturnNode;
 
 public class BinarySearchTree<E extends Comparable<E>> {
     class Node {
@@ -142,12 +143,39 @@ public class BinarySearchTree<E extends Comparable<E>> {
      
 
     // Method #2.
+     /*
+      * Given a value, this method should return the “depth” of its Node,
+      * which is the number of ancestors between that node and the root,
+      * including the root but not the node itself. The depth of the root is defined to be 0;
+      * the depth of its two children (if any) is defined to be 1;
+      * the depth of the root’s grandchildren (if any) is defined to be 2; and so on.
+      * If the value is null or does not exist in this BST, this method should return -1.
+      */
     protected int depth(E val) {
 
-	/* IMPLEMENT THIS METHOD! */
+	if(val == null) return -1;
 
-	return -2; // this line is here only so this code will compile if you don't modify it
-
+	Node node = root;
+	int depth = 0;
+	
+	
+	while(true) {
+	    if(node.value.equals(val)) {
+		return depth;
+	    }
+	    else if(node.value.compareTo(val)>0) {
+		node = node.leftChild;
+		depth ++;
+	    }
+	    else {
+		node = node.rightChild;
+		depth ++;
+	    }
+	    if(node == null) return -1;
+	    
+	    
+	}
+	
     }
 
     // Method #3.
