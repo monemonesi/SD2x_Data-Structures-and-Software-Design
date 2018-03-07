@@ -1,4 +1,4 @@
-import jdk.nashorn.internal.ir.ReturnNode;
+package HW4;
 
 public class BinarySearchTree<E extends Comparable<E>> {
     class Node {
@@ -126,8 +126,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
     public Node findNode(E val) {
 
 	if(val == null) return null;
-	else return findNode(root, val); // I am overloading the method for facilitate the iterative research
-
+	else return findNode(root, val);
     }
     
      protected Node findNode(Node n, E val) {
@@ -144,7 +143,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
     // Method #2.
      /*
-      * Given a value, this method should return the “depth” of its Node,
+      * Given a value, this method should return the depth of its Node,
       * which is the number of ancestors between that node and the root,
       * including the root but not the node itself. The depth of the root is defined to be 0;
       * the depth of its two children (if any) is defined to be 1;
@@ -180,26 +179,13 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
     // Method #3.
     /*
-     * Given a value, this method should return the “height” of its Node,
+     * Given a value, this method should return the height of its Node,
      * which is the greatest number of nodes between that node and any descendant node that is a leaf,
      * including the leaf but not the node itself.
      * The height of a leaf node (i.e., one which has no children) is defined to be 0.
      * If the input value is null or does not exist in this BST, this method should return -1.
      */
-    /*
-    protected int height(E val) {
 
-	if(val == null) return -1;
-
-	Node n = findNode(val);
-	if(n == null) return -1;
-	
-	if(n.leftChild==null && n.rightChild==null) return 0;//height of a leaf node
-	//else {
-	    int maxHeight = Math.max(height(n.leftChild.value), height(n.rightChild.value));
-	    return maxHeight + 1; // do not forget the actual node
-	//}
-    }*/
     protected int height(E val) {
 	if (val == null) return -1;
 	    
