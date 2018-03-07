@@ -225,23 +225,32 @@ public class BinarySearchTree<E extends Comparable<E>> {
      * of its left and right children is 0 or 1, and return false otherwise. 
      * If the Node is null or does not exist in this BST, this method should return false.
      */
+    
     protected boolean isBalanced(Node n) {
 
 	if (n == null || !contains(n.value))
 	    return false;
 
 	int deltaHeight = Math.abs(height(n.leftChild) - height(n.rightChild));
-	return deltaHeight < 1 ? true : false;
+	return deltaHeight <=1 ? true : false;
 
     }
 
-    // Method #5. .
+    
     public boolean isBalanced() {
 
-	/* IMPLEMENT THIS METHOD! */
-
-	return false; // this line is here only so this code will compile if you don't modify it
+	return inOrderTraversal(root);
 
     }
+
+    private boolean inOrderTraversal(Node n) {
+	if (n == null) return false;
+	boolean balance = isBalanced(n);
+	if(n.leftChild != null) balance = balance && isBalanced(n.leftChild);
+	if(n.rightChild != null) balance = balance && isBalanced(n.rightChild);
+	
+	return balance;
+    }
+
 
 }
