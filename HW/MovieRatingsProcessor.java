@@ -44,12 +44,29 @@ public class MovieRatingsProcessor {
 
 	return alphabeticalMoviesAboveRating;
     }
-
+    
+    /*
+     * given an input int rating, modify the TreeMap object that was passed as an argument 
+     * so that you remove all ratings in the PriorityQueue that are below (but not equal to) rating 
+     * for every movie in the Map. 
+     * If all ratings are removed from a movie’s PriorityQueue, then remove the mapping from the TreeMap. 
+     * Additionally, this method should return a new TreeMap that maps a movie title to the number of ratings 
+     * that were removed from its corresponding PriorityQueue;
+     * the TreeMap that is returned should only contain movies that had ratings removed from its PriorityQueue.
+     */
     public static TreeMap<String, Integer> removeAllRatingsBelow(TreeMap<String, PriorityQueue<Integer>> movieRatings,
 	    int rating) {
 
-	/* IMPLEMENT THIS METHOD! */
-
-	return null; // this line is here only so this code will compile if you don't modify it
+	TreeMap<String, Integer> updatedMovieRating = new TreeMap<>();
+	
+	if (movieRatings != null && !movieRatings.isEmpty() && rating >= 0) {
+	    
+	    //TODO: complete this method
+	
+	}
+	
+	
+	
+	return updatedMovieRating;
     }
 }
