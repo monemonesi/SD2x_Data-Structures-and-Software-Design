@@ -1,3 +1,4 @@
+package HW5;
 /*
  * SD2x Homework #5
  * This class represents a single rating for a movie.
