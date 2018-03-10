@@ -1,7 +1,9 @@
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
@@ -69,6 +71,23 @@ public class BreadthFirstSearch {
 	
 	while(!toExplore.isEmpty()) {
 	    //TODO: implement this method and research way for find the minimumm distance.
+	    Node current = toExplore.remove();
+	    List<Node> neighbours = new ArrayList<Node>(graph.getNodeNeighbors(current));
+	    for (Node neighbour : neighbours) {
+		//Check in the MarkedList
+		if(!marked.contains(neighbour)) {
+		    //add to my distances map (with distance of current+1)
+		    distances.put(neighbour, distances.get(current)+1);
+		    //Check if the actual element is the one I was looking for
+		    if(neighbour.getElement().equals(elementToFind)) return distances.get(neighbour);
+		    else {
+			//Proceed in my graph exploration
+			marked.add(neighbour);
+			toExplore.add(neighbour);
+		    }
+		}
+		
+	    }
 	    
 	}
 
