@@ -1,4 +1,5 @@
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -45,9 +46,13 @@ public class GraphUtils {
      */
     public static Set<String> nodesWithinDistance(Graph graph, String src, int distance) {
 
-	/* IMPLEMENT THIS METHOD! */
-
-	return null; // this line is here only so this code will compile if you don't modify it
+	if(graph == null || src == null || distance < 1 || !graph.containsElement(src)) {
+	    return null;
+	}
+	else {
+	    return new BreadthFirstSearch(graph).nodesWithinDist(src,distance);
+	}
+	
     }
 
     /*

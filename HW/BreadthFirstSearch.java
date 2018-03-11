@@ -53,7 +53,7 @@ public class BreadthFirstSearch {
 	return false;
     }
 
-    // Helper Method
+    // Helper Methods
     public int findDistance(String start, String elementToFind) {
 
 	Node startNode = graph.getNode(start);
@@ -61,37 +61,74 @@ public class BreadthFirstSearch {
 	    return -1;
 	if (startNode.getElement().equals(elementToFind))
 	    return 0;
-	
-	Queue<Node> toExplore = new LinkedList<Node>(); //my queue with all the nodes to explore
+
+	Queue<Node> toExplore = new LinkedList<Node>(); // my queue with all the nodes to explore
 	Map<Node, Integer> distances = new HashMap<Node, Integer>();
-	
+
 	marked.add(startNode);
 	toExplore.add(startNode);
 	distances.put(startNode, 0);
-	
-	while(!toExplore.isEmpty()) {
-	    //TODO: implement this method and research way for find the minimumm distance.
+
+	while (!toExplore.isEmpty()) {
 	    Node current = toExplore.remove();
 	    List<Node> neighbours = new ArrayList<Node>(graph.getNodeNeighbors(current));
 	    for (Node neighbour : neighbours) {
-		//Check in the MarkedList
-		if(!marked.contains(neighbour)) {
-		    //add to my distances map (with distance of current+1)
-		    distances.put(neighbour, distances.get(current)+1);
-		    //Check if the actual element is the one I was looking for
-		    if(neighbour.getElement().equals(elementToFind)) return distances.get(neighbour);
+		// Check in the MarkedList
+		if (!marked.contains(neighbour)) {
+		    // add to my distances map (with distance of current+1)
+		    distances.put(neighbour, distances.get(current) + 1);
+		    // Check if the actual element is the one I was looking for
+		    if (neighbour.getElement().equals(elementToFind))
+			return distances.get(neighbour);
 		    else {
-			//Proceed in my graph exploration
+			// Proceed in my graph exploration
 			marked.add(neighbour);
 			toExplore.add(neighbour);
 		    }
 		}
-		
+
 	    }
-	    
+
 	}
 
 	return -1;
+    }
+    
+    //Helper method for NodesWithinDistance
+    //This method is very similar to the previous one, maybe is it possible reduce the code
+    public Set<String> nodesWithinDist(String start, int distanceIn) {
+	// TODO Auto-generated method stub
+	Set<String> nodesWithinDistanceElement = new HashSet<String>();
+
+	Node startNode = graph.getNode(start);
+
+	Queue<Node> toExplore = new LinkedList<Node>(); // my queue with all the nodes to explore
+	Map<Node, Integer> distances = new HashMap<Node, Integer>();
+
+	marked.add(startNode);
+	toExplore.add(startNode);
+	distances.put(startNode, 0);
+
+	while (!toExplore.isEmpty()) {
+	    Node current = toExplore.remove();
+	    List<Node> neighbours = new ArrayList<Node>(graph.getNodeNeighbors(current));
+	    for (Node neighbour : neighbours) {
+		// Check in the MarkedList
+		if (!marked.contains(neighbour)) {
+		    distances.put(neighbour, distances.get(current) + 1);
+		    // Check the distance
+		    if (distances.get(current) < distanceIn) {
+			nodesWithinDistanceElement.add(neighbour.element);
+		    }
+
+		    // Proceed in my graph exploration
+		    marked.add(neighbour);
+		    toExplore.add(neighbour);
+
+		}
+	    }
+	} // END of While Loop
+	return nodesWithinDistanceElement;
     }
 
 }
