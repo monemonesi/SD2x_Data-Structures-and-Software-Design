@@ -3,6 +3,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.sun.javafx.geom.Area;
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.Any;
+
 /*
  * SD2x Homework #6
  * Implement the methods below according to the specification in the assignment description.
@@ -23,11 +26,11 @@ public class GraphUtils {
 
     public static int minDistance(Graph graph, String src, String dest) {
 
-	if(graph==null || src == null || dest == null
-		|| !graph.containsElement(src) || !graph.containsElement(dest)) {
+	if (graph == null || src == null || dest == null || !graph.containsElement(src)
+		|| !graph.containsElement(dest)) {
 	    return -1;
-	}else {
-	    int minDist = new BreadthFirstSearch(graph).findDistance(src,dest);
+	} else {
+	    int minDist = new BreadthFirstSearch(graph).findDistance(src, dest);
 	    return minDist;
 	}
     }
@@ -46,13 +49,12 @@ public class GraphUtils {
      */
     public static Set<String> nodesWithinDistance(Graph graph, String src, int distance) {
 
-	if(graph == null || src == null || distance < 1 || !graph.containsElement(src)) {
+	if (graph == null || src == null || distance < 1 || !graph.containsElement(src)) {
 	    return null;
+	} else {
+	    return new BreadthFirstSearch(graph).nodesWithinDist(src, distance);
 	}
-	else {
-	    return new BreadthFirstSearch(graph).nodesWithinDist(src,distance);
-	}
-	
+
     }
 
     /*
@@ -68,11 +70,37 @@ public class GraphUtils {
      * in the List that are not connected by an edge), etc. The method should also
      * return false if the input Graph or List is null.
      */
+
     public static boolean isHamiltonianPath(Graph g, List<String> values) {
 
-	/* IMPLEMENT THIS METHOD! */
+	if (g == null || values == null || values.isEmpty())
+	    return false;
 
-	return true; // this line is here only so this code will compile if you don't modify it
+	String src = values.get(0);
+	Set<String> marked = new HashSet<>();
+	marked.add(src);
+	
+	  if (!src.equals(values.get(values.size() - 1))) // check start and end node
+	  return false;
+	 
+
+	for (int i = 1; i < values.size(); i++) {
+	    // Are there any cycle condition not respected?
+	    if ((marked.contains(values.get(i)) && i != (values.size() - 1)) // already visited except for the last node 
+		    || !g.containsElement(values.get(i)) //contain the elements?
+		    || !g.getNodeNeighbors(g.getNode(values.get(i - 1))).contains(g.getNode(values.get(i)))
+	    // nodes not connected
+	    ) {
+		return false;
+	    } else {
+		marked.add(values.get(i));
+	    }
+	    
+
+	} // End of ForLoop
+
+	// Have they the same size?
+	return g.getNumNodes() == marked.size();
     }
 
 }
