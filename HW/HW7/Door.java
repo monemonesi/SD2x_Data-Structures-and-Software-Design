@@ -1,3 +1,4 @@
+package HW7;
 
 public class Door extends MapSite {
     public boolean isOpen;

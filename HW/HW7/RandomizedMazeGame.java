@@ -1,3 +1,4 @@
+package HW7;
 
 public class RandomizedMazeGame extends MazeGame {
     

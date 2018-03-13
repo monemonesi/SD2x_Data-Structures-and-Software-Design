@@ -1,3 +1,4 @@
+package HW7;
 
 public class Maze {
     public Room[] rooms;

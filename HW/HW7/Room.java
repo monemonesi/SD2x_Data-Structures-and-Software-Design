@@ -1,3 +1,4 @@
+package HW7;
 
 public class Room extends MapSite {
     public int roomNumber;
