@@ -1,10 +1,10 @@
+package HW6;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.sun.javafx.geom.Area;
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.Any;
+
 
 /*
  * SD2x Homework #6

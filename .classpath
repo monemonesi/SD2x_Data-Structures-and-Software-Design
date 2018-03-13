@@ -3,6 +3,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="HW"/>
 	<classpathentry kind="lib" path="junit-dist.jar"/>
-	<classpathentry kind="lib" path="homework6-tests.jar"/>
+	<classpathentry kind="lib" path="homework7-tests.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
