@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /*
  * SD2x Homework #8
  * This class represents the Presentation Tier in the three-tier architecture.
@@ -8,6 +10,7 @@
 public class PresentationTier {
 	
 	private LogicTier logicTier; // link to the Logic Tier
+	private Scanner sc = new Scanner(System.in);
 	
 	public PresentationTier(LogicTier logicTier) {
 		this.logicTier = logicTier;
@@ -22,7 +25,19 @@ public class PresentationTier {
 	
 	public void start() {
 		
-		/* IMPLEMENT THIS METHOD */
+		System.out.println("Welcome on HW8");
+		System.out.println("Avaiable features:");
+		System.out.println("Press 1 for find the book titles by author");
+		System.out.println("Press 2 for find the number of book published in a certain year");
+		System.out.print("Which feature do you like to use?");
+		
+		String input = sc.nextLine();
+		if(input.equals("1")) showBookTitlesByAuthor();
+		else if (input.equals("2")) showNumberOfBooksInYear();
+		else {
+		    System.out.println("Input non recognized. Please digit 1 or 2");
+		}
+		
 	}
 	
 	
@@ -32,7 +47,7 @@ public class PresentationTier {
 	 * the titles of those books whose author name includes the input name.
 	 */
 	public void showBookTitlesByAuthor() {
-	    
+	    System.out.println("You have choose option 1");
 	}
 	
 	
@@ -41,7 +56,7 @@ public class PresentationTier {
 	 * then display (using System.out) the number of books published in that year
 	 */
 	public void showNumberOfBooksInYear() {
-	    
+	    System.out.println("You have choose option 2");
 	}
 	
 

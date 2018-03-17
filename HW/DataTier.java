@@ -1,4 +1,9 @@
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
+
+
 
 /*
  * SD2x Homework #8
@@ -19,9 +24,24 @@ public class DataTier {
 	 * create Book objects for each, and then return the Book objects.
 	 */
 	public List<Book> getAllBooks() {
+	    List<Book> books = new ArrayList<>();
+	    List<String> lines  = null;
 	    
+
 	    
-	    return null;
+	    try {
+		lines = Files.readAllLines(Paths.get(fileName));
+	    } catch (Exception e) {
+		e.printStackTrace();
+	    }
+	    
+	    //Create a new object Book foreach Line
+	    for (String line : lines) {
+		String [] token = line.split("\t");
+		books.add(new Book(token[0], token[1], Integer.parseInt(token[2])));
+	    }
+	    
+	    return books;
 	}
 
 }
