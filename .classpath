@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="HW"/>
 	<classpathentry kind="lib" path="junit-dist.jar"/>
 	<classpathentry kind="lib" path="homework7-tests.jar"/>
+	<classpathentry kind="lib" path="homework8-tests.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
