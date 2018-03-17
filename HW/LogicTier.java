@@ -22,7 +22,7 @@ public class LogicTier {
 	 * for a given name, search through all of the books and return 
 	 * the titles of those books whose author name includes the input name.
 	 */
-	public Set<String> findBookTitlesByAuthor() {
+	public Set<String> findBookTitlesByAuthor(String authorName) {
 	    Set<String> bookTitleByAuthor = new HashSet<String>();
 	    
 	    return bookTitleByAuthor;
@@ -33,7 +33,7 @@ public class LogicTier {
 	 * for a given year, search through all of the books and 
 	 * return the number of books published in that year
 	 */
-	public int findNumberOfBooksInYear() {
+	public int findNumberOfBooksInYear(int year) {
 	    int numberOfBookInYear = 0;
 	    
 	    return numberOfBookInYear; 
