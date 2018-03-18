@@ -23,9 +23,19 @@ public class LogicTier {
 	 * the titles of those books whose author name includes the input name.
 	 */
 	public Set<String> findBookTitlesByAuthor(String authorName) {
+	    
 	    Set<String> bookTitleByAuthor = new HashSet<String>();
+	    List<Book> books = dataTier.getAllBooks();
+	    
+	    for (Book book : books) {
+		//if(book.author.toLowerCase()==authorName.toLowerCase()) {
+		if(book.getAuthor().toLowerCase().contains(authorName.toLowerCase())) {
+		    bookTitleByAuthor.add(book.getTitle());
+		}
+	    }
 	    
 	    return bookTitleByAuthor;
+
 	}
 	
 	
@@ -33,8 +43,15 @@ public class LogicTier {
 	 * for a given year, search through all of the books and 
 	 * return the number of books published in that year
 	 */
-	public int findNumberOfBooksInYear(int year) {
+	public int findNumberOfBooksInYear(int choosenYear) {
 	    int numberOfBookInYear = 0;
+	    
+	    List<Book> books = dataTier.getAllBooks();
+	    
+	    for (Book book : books) {
+		if(book.getPublicationYear()==choosenYear) numberOfBookInYear++;
+	    }
+	    
 	    
 	    return numberOfBookInYear; 
 	}

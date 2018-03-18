@@ -51,7 +51,7 @@ public class PresentationTier {
     public void showBookTitlesByAuthor() {
 	System.out.println("You have choose option 1");
 	System.out.println("Choose your author:");
-	String choosenAuthor = sc.nextLine().toLowerCase(); // shall I manage the lower case in LogicTier??
+	String choosenAuthor = sc.nextLine();//.toLowerCase(); // shall I manage the lower case in LogicTier??
 	Set<String> allbooksByAuthor = logicTier.findBookTitlesByAuthor(choosenAuthor);
 	System.out.println("Here are the list of the books written by" + choosenAuthor + ":");
 	for (String book : allbooksByAuthor) {
@@ -70,7 +70,7 @@ public class PresentationTier {
 	try {
 	    int choosenYear = sc.nextInt();
 	    int numOfBooks = logicTier.findNumberOfBooksInYear(choosenYear);
-	    System.out.println(numOfBooks);
+	    System.out.println("The number of Book published in "+choosenYear+" is "+numOfBooks);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
