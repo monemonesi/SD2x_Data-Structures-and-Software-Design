@@ -37,7 +37,7 @@ public abstract class Document {
 	return location.getPostCode();
     }
     
-    //Abstraction:
+
     public boolean sameAuthor(Document doc) {
 	return this.author.equals(doc.author);
     }
