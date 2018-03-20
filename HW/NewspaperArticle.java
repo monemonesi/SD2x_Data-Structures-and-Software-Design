@@ -5,6 +5,15 @@
  */
 import java.util.*;
 
+/*
+ * Activity Part 1: Applying Extract Class
+ * Use the Extract Class refactoring pattern to create a new class called PublishingLocation
+ * and implement that class so that it contains the city, state, and postCode fields and any
+ * other necessary methods. Then modify NewspaperArticle accordingly by removing fields and methods as needed,
+ * and then setting up the appropriate relationship between NewspaperArticle
+ * and this newly created PublishingLocation class.
+ */
+
 public class NewspaperArticle {
 	private String title;
 	private String author;
@@ -13,11 +22,12 @@ public class NewspaperArticle {
 	private Set<String> editors;
 	private String newspaper;
 	private Date date;
-	private String city;
-	private String state;
-	private String postCode;
+//	private String city;
+//	private String state;
+//	private String postCode;
+	private PublishingLocation location;
 	
-	public NewspaperArticle(String title, String author, int startPage, int endPage, Set<String> editors, String newspaper, Date date, String city, String state, String postCode) {
+	public NewspaperArticle(String title, String author, int startPage, int endPage, Set<String> editors, String newspaper, Date date , String city, String state, String postCode) {
 		this.title = title;
 		this.author = author;
 		this.startPage = startPage;
@@ -25,9 +35,11 @@ public class NewspaperArticle {
 		this.editors = editors;
 		this.newspaper = newspaper;
 		this.date = date;
-		this.city = city;
-		this.state = state;
-		this.postCode  = postCode;
+//		this.city = city;
+//		this.state = state;
+//		this.postCode  = postCode;
+		this.location = new PublishingLocation(city, state, postCode);
+		
 	}
 	
 	public String getTitle() {
@@ -59,15 +71,18 @@ public class NewspaperArticle {
 	}
 	
 	public String getCity() {
-		return city;
+		//return city;
+	    return location.getCity();
 	}
 	
 	public String getState() {
-		return state;
+		//return state;
+	    return location.getState();
 	}
 	
 	public String getPostCode() {
-		return postCode;
+		//return postCode;
+	    return location.getPostCode();
 	}
 	
 	public int numPages(){
