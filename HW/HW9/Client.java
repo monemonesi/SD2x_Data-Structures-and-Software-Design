@@ -1,3 +1,4 @@
+package HW9;
 /*
  * SD2x Homework #9
  * This class represents the code that uses the NewspaperArticle class.
