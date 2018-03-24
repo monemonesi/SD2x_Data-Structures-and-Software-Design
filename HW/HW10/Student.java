@@ -1,3 +1,4 @@
+package HW10;
 /*
  * SD2x Homework #10
  * This class represents a student.
