@@ -1,10 +1,10 @@
 
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -25,19 +25,39 @@ public class PlagiarismDetector {
 		
 		Map<String, Integer> numberOfMatches = new HashMap<String, Integer>();
 		
-		for (int i = 0; i < files.length; i++) {
+		//I can create all the phrases at the same time: this is better for speed, but not for memory
+		Map<String, Set<String>> allFilesPhrases = new HashMap<>();
+		for (String file : files) {
+			if (file != null) {
+			    allFilesPhrases.put(file, createPhrases(dirName + "/" + file, windowSize));
+			}
+		}
+		
+		//Upper boundary for i variable is files.length - 1
+		//this allow me to start the following index from i+1
+		for (int i = 0; i < files.length - 1; i++) {
 			String file1 = files[i];
-
-			for (int j = 0; j < files.length; j++) { 
+			if(file1 == null) return null;
+			
+			//Set<String> file1Phrases = createPhrases(dirName + "/" + file1, windowSize);
+			Set<String> file1Phrases = allFilesPhrases.get(file1);
+			if(file1Phrases == null) return null;
+			
+			//reduce the number of element for cross reference j = i + 1
+			for (int j = i+1; j < files.length; j++) { 
 				String file2 = files[j];
 				
-				Set<String> file1Phrases = createPhrases(dirName + "/" + file1, windowSize); 
-				Set<String> file2Phrases = createPhrases(dirName + "/" + file2, windowSize); 
 				
+				//Set<String> file1Phrases = createPhrases(dirName + "/" + file1, windowSize); 
+				//Set<String> file2Phrases = createPhrases(dirName + "/" + file2, windowSize);
+				Set<String> file2Phrases = allFilesPhrases.get(file2);
+				if(file2Phrases == null) return null;
+				
+				/*
 				if (file1Phrases == null || file2Phrases == null)
 					return null;
-				
-				Set<String> matches = findMatches(file1Phrases, file2Phrases);
+				*/
+				List<String> matches = findMatches(file1Phrases, file2Phrases);
 				
 				if (matches == null)
 					return null;
@@ -64,7 +84,10 @@ public class PlagiarismDetector {
 	protected static List<String> readFile(String filename) {
 		if (filename == null) return null;
 		
-		List<String> words = new LinkedList<String>();
+		//Switching to ArrayList for a faster research by index
+		//List<String> words = new LinkedList<String>();
+		List<String> words = new ArrayList<String>();
+		
 		
 		try {
 			Scanner in = new Scanner(new File(filename));
@@ -109,12 +132,12 @@ public class PlagiarismDetector {
 
 	
 	/*
-	 * Returns a Set of Strings that occur in both of the Set parameters.
+	 * Returns a List of Strings that occur in both of the Set parameters.
 	 * However, the comparison is case-insensitive.
 	 */
-	protected static Set<String> findMatches(Set<String> myPhrases, Set<String> yourPhrases) {
-	
-		Set<String> matches = new HashSet<String>();
+	protected static List<String> findMatches(Set<String> myPhrases, Set<String> yourPhrases) {
+		
+		List<String> matches = new ArrayList<String>();
 		
 		if (myPhrases != null && yourPhrases != null) {
 		
@@ -128,6 +151,7 @@ public class PlagiarismDetector {
 		}
 		return matches;
 	}
+
 	
 	/*
 	 * Returns a LinkedHashMap in which the elements of the Map parameter
